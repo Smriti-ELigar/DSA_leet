@@ -1,0 +1,17 @@
+Sliding Window Technique
+When we slide the window from one position to the next, we:
+
+# Add the new element that enters the window.
+# Subtract the old element that leaves the window.
+
+This way, we don’t need to recalculate the sum of the entire subarray from scratch, which saves time and makes the algorithm more efficient.
+
+Initial subarray (first window): [1, 2, 3, 4]
+Sum: (1 + 2 + 3 + 4 = 10)
+When we slide the window one position to the right:
+
+New subarray: [2, 3, 4, 5]
+Instead of recalculating the sum from scratch, we update it:
+currentSubarraySum = 10 + 5 - 1 = 14
+Here, 5 is the new element entering the window, and 1 is the old element leaving the window.
+similiarly 2,3,...will leave
