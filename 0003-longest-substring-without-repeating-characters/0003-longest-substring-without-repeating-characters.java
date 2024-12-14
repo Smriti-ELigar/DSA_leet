@@ -32,3 +32,7 @@ class Solution {
         return maxlen;
     }
 }
+// The Math.max(l, mpp.get(currentChar) + 1) ensures that:
+
+// l only moves forward when a duplicate is found.
+// Past updates to l are respected, avoiding regressions.
