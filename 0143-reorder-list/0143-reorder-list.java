@@ -8,36 +8,37 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+
+public class Solution {
     public void reorderList(ListNode head) {
-        ListNode slow = head;
-        ListNode fast = head.next;
-        while(fast!=null && fast.next!=null){
-            slow = head.next;
-            fast = head.next.next;
+        if (head == null || head.next == null) return;
+
+        // Step 1: Find the middle of the list
+        ListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
-        ListNode second = slow.next;
-        ListNode prev = slow.next = null;
-        while(second!=null){
-            ListNode temp = second.next;
-            second.next = prev;
-            prev = second;  //reversed ll stored in prev of  2nd half
-            second = temp;
+        // Step 2: Reverse the second half
+        ListNode prev = null, curr = slow.next;
+        slow.next = null; // Break the list into two parts
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
         }
-        // 1->2->4->3
-        //prev : 4->3
-        
 
-        ListNode first = head;
-        second = prev;
-        while(second!=null){
-            ListNode tmp1 = first.next;
-            ListNode tmp2 = second.next;
+        // Step 3: Merge the two halves
+        ListNode first = head, second = prev;
+        while (second != null) {
+            ListNode temp1 = first.next;
+            ListNode temp2 = second.next;
             first.next = second;
-            second.next = tmp1;
-            first = tmp1;
-            second = tmp2;
+            second.next = temp1;
+            first = temp1;
+            second = temp2;
         }
     }
 }
